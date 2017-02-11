@@ -51,3 +51,4 @@ Temporary Items
 *.pyc
 db.sqlite3
 *.pyc
+*.jpg
