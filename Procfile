@@ -1,1 +1,1 @@
-web: gunicorn sht_webserver.wsgi --log-file - 
+web: gunicorn contact_photo.wsgi --log-file - 
