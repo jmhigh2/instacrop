@@ -1,5 +1,7 @@
 {% extends 'index/index.html' %}
 
+{% load static %}
+
 {% block content %}
         <div class="container">
             <table class="table table-bordered">
@@ -8,22 +10,27 @@
                   <th scope="row">#</th>
                   <th>Picture</th>
                   <th>Name</th>
-                  <th></th>
+                  <th>Options</th>
                 </tr>
    {% for num in number %}
                 <tr>
-                  <th scope="row">1</th>
+                  <th scope="row">{{ forloop.counter }}</th>
                   <td>
-                      <img class="img-circle" src="media/face_{{ forloop.counter0 }}.jpg"></img>
+                      <img id="img{{ forloop.counter }}" class="img-circle" style="height: 100px" src="media/face_{{ forloop.counter0 }}.jpg"></img>
                   </td>
                   <td>
                       <span class="name"><br><br>
-                          <input class="black-text" type="email" name="field3" placeholder="Name" class="field" />
+
+                          <input id="name{{ forloop.counter }}" class="black-text" type="email" name="contact_name" placeholder="Name" class="field" /> <br>
+                          <input id="number{{ forloop.counter }}" class="black-text" type="email" name="contact_num" placeholder="Phone Number" class="field" />
                       </span>
                   </td>
                   <td>
-                      <a href="#" style="height: 50px;line-height: 50px;vertical-align: middle;" onclick="confirm('jonathan-hightower')" class="btn">Confirm</a>
+                      <a href="#" id="create{{ forloop.counter }}"  onclick="createContact({{ forloop.counter  }})" style="height: 50px;line-height: 50px;vertical-align: middle;"  class="btn">Create</a>
                 </td>
+                <td>
+                    <a href="#" id="update{{ forloop.counter }}" style="height: 50px;line-height: 50px;vertical-align: middle;" class="btn">Update</a>
+              </td>
                 </tr>
 
     {% endfor %}
@@ -31,7 +38,6 @@
               </thead>
             </table>
 
-<a href="details.html" style="height: 50px;line-height: 50px;vertical-align: middle;" onclick="done()" class="btn">Next
-</a>
+            <script src="{% static 'assets/contactupdater.js' %}"></script>
 
 {% endblock %}

@@ -48,7 +48,7 @@
 {% block content %}
             <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
 
-            <div class="row"><br></div><br><br>
+
             <div class="row">
                 <a onclick="login()" href="{% url 'index:google' %}">
                 <button class="btn red" type="button">
@@ -58,19 +58,21 @@
                 </button>
                 </a>
             </div>
-            <form method="post" enctype="multipart/form-data">
-              {% csrf_token %}
+            <br><br><br><br><br><br>
+
+      
 
             <div class="row">
                 <div class="custom-file-upload center">
-                    <!--<label for="file">File: </label>-->
 
-                    <input class="center" type="file" id="file" name="myfile" multiple />
-                    <button class="btn red" type="submit">Upload</button>
+                  <form method="post" enctype="multipart/form-data">
+                  <input class="center" type="file" id="file" name="myfile" multiple />
+                  <button class="btn red" type="submit">Upload</button>
+                  </form>
                 </div>
             </div>
 
-            </form>
+
 
         </div>
 

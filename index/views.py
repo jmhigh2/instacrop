@@ -16,6 +16,9 @@ from oauth2client import client
 from PIL import Image
 from PIL import ImageDraw
 
+
+from django.views.decorators.csrf import csrf_exempt
+
 CLIENT_SECRET_FILE = 'client_secrets.json'
 
 from oauth2client import service_account
@@ -89,6 +92,7 @@ def scanImage(path):
     return faceNumber
 
 
+@csrf_exempt
 def index(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
@@ -102,6 +106,19 @@ def index(request):
         })
     return render(request, 'index/index.html')
 
+
+def update_contact(request):
+    if request.method == 'POST':
+        print request.POST['contact_name']
+
+    return render(request, 'index/index.html')
+
+
+def create_contact(request):
+    if request.method == 'POST':
+        print request.POST['contact_name']
+
+    return render(request, 'index/index.html')
 
 
 def link_google(request):
@@ -141,7 +158,7 @@ def google_auth(request):
     import atom.http_core
 
     redirect_url = REDIRECT_URI + '?code='+ auth_code
-    print redirect_url
+
 
     url = atom.http_core.ParseUri(redirect_url)
     print url.query
@@ -153,7 +170,6 @@ def google_auth(request):
 
     feed = gd_client.GetContacts()
     print feed
-
 
 
     return render(request, 'users/success.html')
