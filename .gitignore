@@ -52,3 +52,4 @@ Temporary Items
 db.sqlite3
 *.pyc
 *.jpg
+*.json

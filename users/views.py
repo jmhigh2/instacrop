@@ -5,6 +5,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def logout_view(request):
     logout(request)

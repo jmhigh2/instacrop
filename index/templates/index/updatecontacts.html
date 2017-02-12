@@ -26,10 +26,10 @@
                       </span>
                   </td>
                   <td>
-                      <a href="#" id="create{{ forloop.counter }}"  onclick="createContact({{ forloop.counter  }})" style="height: 50px;line-height: 50px;vertical-align: middle;"  class="btn">Create</a>
+                      <a href="#" id="create{{ forloop.counter }}"  onclick="createContact({{ forloop.counter  }}, '{{ user.get_username }}')" style="height: 50px;line-height: 50px;vertical-align: middle;"  class="btn">Create</a>
                 </td>
                 <td>
-                    <a href="#" id="update{{ forloop.counter }}" style="height: 50px;line-height: 50px;vertical-align: middle;" class="btn">Update</a>
+                    <a href="#" id="update{{ forloop.counter }}" onclick="updateContact({{ forloop.counter }}, '{{ user.get_username }}')" style="height: 50px;line-height: 50px;vertical-align: middle;" class="btn">Update</a>
               </td>
                 </tr>
 
