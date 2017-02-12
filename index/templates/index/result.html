@@ -1,11 +1,15 @@
-{% load static %}
 
 <!DOCTYPE html>
 <html>
 <body>
 
 <h2>Sample File</h2>
-<img src="{{ filename }}" style="width:304px;height:228px;">
+
+
+{% for num in number %}
+<img src="media/face_{{ forloop.counter0 }}.jpg" style="width:304px;height:228px;">
+
+{% endfor %}
 
 </body>
 </html>

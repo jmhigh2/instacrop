@@ -33,7 +33,25 @@ else:
     REDIRECT_URI = 'http://127.0.0.1:8000/auth'
 
 
-# Create your views here.
+def crop(img, coords, savename):
+    #print(coords)
+    #print("IMAGE SIZE: " + str(img.size))
+    x1 = coords[0][0]
+    y1 = coords[0][1]
+    x2 = coords[2][0]
+    y2 = coords[2][1]
+
+    #width = (x2 - x1)
+    #height = (y2 - y1)
+    #print("X: " + str(x1))
+    #print("Y: " + str(y1))
+    #print("HEIGHT: " + str(height))
+    #print("WIDTH: " + str(width))
+    #print("")
+    newImg = img.crop((x1, y1, x2, y2))
+
+    newImg.save('media/' + savename)
+
 
 def scanImage(path):
     """Detects faces in an image."""
@@ -64,10 +82,13 @@ def scanImage(path):
         #now we have a polygon, so we draw
         if (len(coords) == 4): #if we did indeed get a rectangle
             draw.polygon(coords, outline=(255,255,255,255))
-            name = "face_" + str(faceNumber)
-            #crop(img, coords, name)
-    img.save(path)
+            name = "face_" + str(faceNumber) + ".jpg"
+            crop(img, coords, name)
+        faceNumber += 1
+    img.save("media/totalscan.jpg")
     faceNumber += 1
+
+    return faceNumber
 
 
 def index(request):
@@ -76,10 +97,10 @@ def index(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         file_url = fs.path(filename)
-        scanImage(file_url)
+        number = scanImage(file_url)
 
         return render(request, 'index/result.html', {
-            'filename': 'media/'+ filename
+            'filename': 'media/'+ filename, 'number': range(0,number-1)
         })
     return render(request, 'index/upload.html')
 
