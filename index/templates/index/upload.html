@@ -1,6 +1,5 @@
 {% load static %}
 
-{% block content %}
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="file" name="myfile">
@@ -11,5 +10,9 @@
     <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
   {% endif %}
 
+  <a href="/google">GOOGLE</a>
+  <a href="{% url 'users:login' %}">LOGIN</a>
+  <a href="{% url 'users:logout' %}">LOGOUT</a>
+  <a href="{% url 'users:register' %}">register</a>
+
   <p><a href="{% url 'index:index' %}">Return to home</a></p>
-{% endblock %}

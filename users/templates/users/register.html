@@ -1,0 +1,22 @@
+{% block title %}Register{% endblock %}
+
+
+{% block content %}
+
+
+<div class="panel panel-default">
+<div class="container">
+
+<form method = 'post' action= "{% url 'users:register' %}" >
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button class="btn btn-default" name = "submit"> register </button>
+  <input type= "hidden" name = "next" value = "{% url 'index:index'}"
+</form>
+
+
+</div>
+</div>
+
+{% endblock content %}

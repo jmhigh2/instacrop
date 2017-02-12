@@ -1,0 +1,24 @@
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+
+<div class="panel panel-default">
+<div class="container">
+
+  {% if form.errors %}
+  <p> Your username and password didn't match, please try again. </p>
+  {% endif %}
+
+
+  <form method = "post" action = "{% url 'users:login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button class="btn btn-default" name = "submit"> log in </button>
+  <input type="hidden" name = "next" value="{% url 'index:index' %}" />
+
+</div>
+</div>
+
+{% endblock content %}

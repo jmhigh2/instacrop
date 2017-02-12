@@ -1,5 +1,9 @@
-from __future__ import unicode_literals
-
 from django.db import models
 
-# Create your models here.
+class UploadPicture(models.Model):
+    name = models.TextField()
+
+class FacePicture(models.Model):
+
+    id = models.ForeignKey(UploadPicture, primary_key=True)
+    name = models.TextField()

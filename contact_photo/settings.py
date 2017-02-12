@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'index',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
+
             ],
         },
     },
@@ -145,3 +146,5 @@ if os.getcwd() == '/app':
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
+
+LOGIN_URL = '/users/login/'
