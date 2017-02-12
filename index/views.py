@@ -2,8 +2,6 @@ from django.shortcuts import render
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
-from models import UploadPicture
-
 from django.contrib.auth.models import User
 
 from django.http import HttpResponseRedirect, Http404
