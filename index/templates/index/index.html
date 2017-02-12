@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        {% block title %}<title>The Janus Project</title>{% endblock title %}
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/css/button.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/css/upload.css' %}" rel="stylesheet" type="text/css" />
+        <meta name="google-signin-client_id" content="59838547405-30l0ud7tksemb0g51fvngseaj55nkgpg.apps.googleusercontent.com">
+
+
+    </head>
+
+    <body>
+        <!--    Navigation Bar  -->
+        <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header"><a class="navbar-brand" href="#">The Janus Project</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navbar-menubuilder">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'index:index' %}">Home</a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li class="dropdown-header">Quick Actions</li>
+                              <li><a href="{% url 'users:login' %}">Login</a></li>
+                              <li><a href="{% url 'users:login' %}">Register</a></li>
+                              <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--   Content   -->
+
+        <div class="container">
+{% block content %}
+            <!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
+
+            <div class="row"><br></div><br><br>
+            <div class="row">
+                <a onclick="login()" href="{% url 'index:google' %}">
+                <button class="btn red" type="button">
+                        <span>
+                            <i class="fa fa-google fa-lg" aria-hidden="true"></i> Login with Google
+                        </span>
+                </button>
+                </a>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+
+            <div class="row">
+                <div class="custom-file-upload center">
+                    <!--<label for="file">File: </label>-->
+
+                    <input class="center" type="file" id="file" name="myfile" multiple />
+                    <button class="btn red" type="submit">Upload</button>
+                </div>
+            </div>
+
+            </form>
+
+        </div>
+
+{% endblock %}
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="{% static 'index/assets/js/upload.js' %}"></script>
+
+</html>

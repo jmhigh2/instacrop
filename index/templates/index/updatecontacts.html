@@ -1,0 +1,37 @@
+{% extends 'index/index.html' %}
+
+{% block content %}
+        <div class="container">
+            <table class="table table-bordered">
+              <thead class="thead-inverse">
+                <tr>
+                  <th scope="row">#</th>
+                  <th>Picture</th>
+                  <th>Name</th>
+                  <th></th>
+                </tr>
+   {% for num in number %}
+                <tr>
+                  <th scope="row">1</th>
+                  <td>
+                      <img class="img-circle" src="media/face_{{ forloop.counter0 }}.jpg"></img>
+                  </td>
+                  <td>
+                      <span class="name"><br><br>
+                          <input class="black-text" type="email" name="field3" placeholder="Name" class="field" />
+                      </span>
+                  </td>
+                  <td>
+                      <a href="#" style="height: 50px;line-height: 50px;vertical-align: middle;" onclick="confirm('jonathan-hightower')" class="btn">Confirm</a>
+                </td>
+                </tr>
+
+    {% endfor %}
+
+              </thead>
+            </table>
+
+<a href="details.html" style="height: 50px;line-height: 50px;vertical-align: middle;" onclick="done()" class="btn">Next
+</a>
+
+{% endblock %}

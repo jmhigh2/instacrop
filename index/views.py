@@ -97,10 +97,10 @@ def index(request):
         file_url = fs.path(filename)
         number = scanImage(file_url)
 
-        return render(request, 'index/result.html', {
+        return render(request, 'index/updatecontacts.html', {
             'filename': 'media/'+ filename, 'number': range(0,number-1)
         })
-    return render(request, 'index/upload.html')
+    return render(request, 'index/index.html')
 
 
 
@@ -110,10 +110,12 @@ def link_google(request):
 
     flow.user_agent = APPLICATION_NAME
     auth_uri = flow.step1_get_authorize_url()
-
-    user = User.objects.get(username = request.user)
-    storage = Storage(FlowModel, 'id', user, 'flow')
-    storage.put(flow)
+    try:
+        user = User.objects.get(username = request.user)
+        storage = Storage(FlowModel, 'id', user, 'flow')
+        storage.put(flow)
+    except:
+        pass
 
     return HttpResponseRedirect(auth_uri)
 
@@ -132,9 +134,10 @@ def google_auth(request):
     auth_token = gdata.gauth.OAuth2Token(
     client_id=CLIENT_ID, client_secret=CLIENT_SECRET,
     scope=SCOPE, user_agent=USER_AGENT)
-
-    user = User.objects.get(username = request.user)
-
+    try:
+        user = User.objects.get(username = request.user)
+    except:
+        pass
     import atom.http_core
 
     redirect_url = REDIRECT_URI + '?code='+ auth_code
